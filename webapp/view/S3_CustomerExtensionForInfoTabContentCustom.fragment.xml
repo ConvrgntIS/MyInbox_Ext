@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
+	xmlns:sap.ca.ui="sap.ca.ui" xmlns:suite="sap.suite.ui.commons">
+	<form:SimpleForm id="SimpleFormDisplay354" minWidth="1024" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout"
+		labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="2" columnsL="1" columnsM="1">
+		<form:content>
+			<Label text="Priority" visible="{=${detail>/Priority} !== 'MEDIUM'}"/>
+			<Text text="{parts: [{path: 'detail>/SAP__Origin'}, {path: 'detail>/Priority'}], formatter:'cross.fnd.fiori.inbox.Conversions.formatterPriority'}" visible="{=${detail>/Priority} !== 'MEDIUM'}"/>
+			<Label text="PR Number"/>
+			<Text text="{detail>/Description/PRNumber}"/>
+			<Label text="Delivery Date"/>
+			<Text text="{parts : [{path : 'detail>/Description/DeliveryDate'}, {path : 'detail>/Description/DeliveryDateAlsoLater'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.deliveryDate'}"/>
+			<Label text="Account Assignment" visible="{=${detail>/Description/AccountAssignment} !== ''}"/>
+			<Text text="{detail>/Description/AccountAssignment}" visible="{=${detail>/Description/AccountAssignment} !== ''}"/>
+			<Label text="Plant"/>
+			<Text text="{detail>/Description/Plant}"/>
+			<Label text="Desired Vendor" visible="{=${detail>/Description/DesiredVendor} !== ''}"/>
+			<Text text="{detail>/Description/DesiredVendor}" visible="{=${detail>/Description/DesiredVendor} !== ''}"/>				
+			<Label text="ContingencyAmount"/>
+			<Text text="{parts: [{path: 'detail>/Description/ContingencyAmount'}, {path: 'detail>/Description/Currency'}], formatter: 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.amount'}"/>
+			<Label text="Total Service Limit"/>
+			<Text text="{parts: [{ path: 'detail>/Description/TotalServiceLimit' }, {path: 'detail>/Description/Currency'}], formatter: 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.amount'}"/>				
+			<Label text="Document Category" visible="{=${detail>/Description/DocumentCategory} !== 'Purchase requisition (B)'}"/>
+			<Text text="{detail>/Description/DocumentCategory}" visible="{=${detail>/Description/DocumentCategory} !== 'Purchase requisition (B)'}"/>
+			<Label text="Status" visible="{=${detail>/Status} !== 'READY'}"/>
+			<Text text="{parts: [{path: 'detail>/SAP__Origin'}, {path: 'detail>/Status'}], formatter:'cross.fnd.fiori.inbox.Conversions.formatterStatus'}" visible="{=${detail>/Status} !== 'READY'}"/>				
+		</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>

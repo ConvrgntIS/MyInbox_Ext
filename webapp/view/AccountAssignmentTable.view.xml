@@ -1,0 +1,83 @@
+<!--
+
+    Copyright (C) 2009-2014 SAP SE or an SAP affiliate company. All rights reserved
+
+-->
+<core:View 
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	controllerName="cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.controller.AccountAssignmentTable">	
+	<Table
+		id="accountAssignmentView_TableAcc"
+		class="mmRequisitionApprove_padding_rl"
+		noDataText="{i18n>view.PurchaseRequisition.placeholder}"  
+		headerText="{i18n>view.PurchaseRequisition.accountAssignment}"
+		visible="{parts : [{path : 'Accountings'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.ItemAccountAssignmentVisibilityTrigger'}"
+		items="{Accountings}">
+		<columns>
+			<Column
+				id="AccountAssignmentTableColumnDescription"
+				hAlign="Left">
+				<header>
+					<Label
+						text="{i18n>view.PurchaseRequisition.descriptionLabel}">
+					</Label>
+				</header>
+			</Column>
+			<Column
+				id="AccountAssignmentTableColumnCategory"
+				hAlign="Left"
+				demandPopin="true"
+				minScreenWidth="Tablet">
+				<header>
+					<Label 
+						text="{i18n>view.PurchaseRequisition.category}">
+					</Label>
+				</header>
+			</Column>
+			<Column
+				id="AccountAssignmentTableColumnAccount"
+				hAlign="Left"
+				demandPopin="true"
+				minScreenWidth="Tablet">
+				<header>
+					<Label 
+						text="{i18n>view.PurchaseRequisition.account}">
+					</Label>
+				</header>
+			</Column>
+			<Column
+				id="AccountAssignmentTableColumnPercentage"
+				hAlign="Right"
+				demandPopin="true"
+				minScreenWidth="Tablet">
+				<header>
+					<Label 
+						text="{i18n>view.PurchaseRequisition.accountAssignmentPercentage}">
+					</Label>
+				</header>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem
+				type="Inactive">
+				<cells>
+					<ObjectIdentifier
+						title="{parts : [{path : 'AccountDescription'}, {path : 'AccountNumber'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.commonIDFormatter'}">
+					</ObjectIdentifier>
+					<Text 
+						text="{AccountCategoryDescription}">
+					</Text>
+					<Text 
+						text="{parts : [{path : 'GlAccountDescription'}, {path : 'GlAccountNumber'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.commonIDFormatter'}">
+					</Text>
+					<ObjectNumber 
+						number="{parts : [{path : 'DistributionPercentage'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.formatAccountingPercentage'}"
+						numberUnit="{parts : [{path : 'DistributionPercentage'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.accountAssignmentPercentageFormatter'}">
+					</ObjectNumber>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:View>

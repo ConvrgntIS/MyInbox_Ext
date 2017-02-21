@@ -1,0 +1,59 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	controllerName="cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.controller.S4" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page id="page" title="Item Detail" showNavButton="true" navButtonPress="onBack">
+				<content>
+					<ObjectHeader xmlns="sap.m" title="{/ShortText}">
+						<attributes>
+							<ObjectAttribute title="PR Number" text="{/PRNumber}"/>
+							<ObjectAttribute title="Item" text="{/ItemNumber}"/>
+						</attributes>
+						<firstStatus>
+							<ObjectStatus text="{parts: [{path: '/ExpectedValue'}, {path: '/Currency'}], formatter: 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.expectedAmount'}" class="expectedAmount"></ObjectStatus>
+						</firstStatus>
+						<secondStatus>
+							<ObjectStatus text="{parts: [{path: '/OverallLimit'}, {path: '/Currency'}], formatter: 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.limitAmount'}"></ObjectStatus>
+						</secondStatus>
+					</ObjectHeader>
+					<VBox class="sapUiSmallMargin">
+						<f:SimpleForm minWidth="1024" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" title="Details" labelSpanL="3"
+							labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1">
+							<f:content>
+								<Label text="Short Text"/>
+								<Text text="{/ShortText}"/>
+								<Label text="Material"/>
+								<Text text="{/MaterialDescription}"/>
+								<Label text="Quantity"/>
+								<Text text="{/Quantity} {/QuantityUnit}"/>
+								<Label text="Delivery Date"/>
+								<Text text="{path: '/DeliveryDate', formatter:'cross.fnd.fiori.inbox.Conversions.formatterDueDate'}"/>
+								<Label text="Material Group"/>
+								<Text text="{/MaterialGroup}"/>
+								<Label text="Plant"/>
+								<Text text="{/Plant}"/>
+								<Label text="G/L Account"/>
+								<Text text="{/AccountAssignment/GLAccount}"/>									
+							</f:content>
+						</f:SimpleForm>
+						<f:SimpleForm minWidth="1024" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" title="Account Assignment" labelSpanL="3"
+							labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1">
+							<f:content>
+								<Label text="G/L Account"/>
+								<Text text="{AccountAssignment/GLAccount}"/>
+								<Label text="Cost Center"/>
+								<Text text="{/AccountAssignment/CostCenter}"/>
+								<Label text="Order"/>
+								<Text text="{/AccountAssignment/Order}"/>
+								<Label text="WBS Element"/>
+								<Text text="{/AccountAssignment/WBSElement}"/>
+								<Label text="Controlling Area"/>
+								<Text text="{/AccountAssignment/ControllingArea}"/>
+							</f:content>
+						</f:SimpleForm>
+					</VBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,554 @@
+<core:View
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:layout="sap.ui.layout"
+	controllerName="cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.controller.S4V1">
+
+	<!-- S4 screen - Item Detail -->
+	<Page
+		id="itemdetail" title="Item Detail" showNavButton="true" navButtonPress="onBack">
+
+		<!-- ItemDetailHeader -->
+		<!-- Material -->
+		<ObjectHeader
+			id="HeaderMaterial"
+			introActive="false"
+			visible="{parts : [{path : 'HdItmProductDetails/ItemType'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.materialVisibilityTrigger'}"
+			title="{Description}"
+			number="{parts: [{path : 'Value'}, {path : 'ItemCategory'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.formatNumberItemType'}"
+			numberUnit="{Currency}">
+			<attributes>
+				<ObjectAttribute
+					id="MaterialObjectHeaderAttributeQuantity"
+					text="{parts : [{path : 'Quantity'}, {path : 'UnitDescription'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.quantityFormatter'}"
+					active="false">
+				</ObjectAttribute>
+				<ObjectAttribute
+					id="MaterialObjectHeaderAttributePricePerUnit"
+					text="{parts : [{path : 'QuantityForPPU'}, {path : 'UnitForPPUDescription'}, {path : 'PricePerUnit'}, {path : 'CurrencyForPPU'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.quantityPerUnitItemCategory'}"
+					active="false">
+				</ObjectAttribute>
+				<ObjectAttribute
+					id="MaterialObjectHeaderAttributeItemCategory"
+					text="{ItemCategoryDescription}"
+					active="false">
+				</ObjectAttribute>
+			</attributes>
+
+			<!-- @ExtensionPoint extMaterialHeaderInfo: material information -->
+			<core:ExtensionPoint name="extMaterialHeaderInfo" />
+		</ObjectHeader>
+
+		<!-- Service -->
+		<ObjectHeader
+			id="HeaderService"
+			introActive="false"
+			visible="{parts : [{path : 'HdItmProductDetails/ItemType'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.serviceVisibilityTrigger'}"
+			title="{Description}"
+			number="{parts : [{path : 'Value'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.formatAmount'}"
+			numberUnit="{Currency}">
+			<attributes>
+				<ObjectAttribute
+					id="ServiceObjectHeaderAttributeNumberServiceLines"
+					text="{parts : [{path : 'NumberServiceLines'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.serviceLinesFormatter'}"
+					active="false">
+				</ObjectAttribute>
+			</attributes>
+
+			<!-- @ExtensionPoint extServiceHeaderInfo: service information -->
+			<core:ExtensionPoint name="extServiceHeaderInfo" />
+		</ObjectHeader>
+		<!-- end of Header -->
+
+		<!-- Information area -->
+		<form:Form
+			id="ItemDetailInfoFormGeneral"
+			title="{i18n>view.PurchaseRequisition.information}">
+			<form:layout>
+				<form:ResponsiveLayout></form:ResponsiveLayout>
+			</form:layout>
+ 			<form:FormContainer	>
+				<form:layoutData>
+					<layout:ResponsiveFlowLayoutData
+						linebreak="true"
+						margin="false">
+					</layout:ResponsiveFlowLayoutData>
+				</form:layoutData>
+				<form:formElements>
+					<form:FormElement
+						id="ItemDetailInfoMaterial"
+						visible="{parts : [{path : 'HdItmProductDetails/MaterialID'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.materialIDVisibilityTrigger'}">
+							<form:layoutData>
+								<layout:ResponsiveFlowLayoutData
+									linebreak="true" 
+									margin="false">
+								</layout:ResponsiveFlowLayoutData>
+							</form:layoutData>
+							<form:label>
+								<Label
+									text="{i18n>view.PurchaseRequisition.material}">
+								</Label>
+							</form:label>
+							<form:fields>
+								<Text text="{HdItmProductDetails/MaterialID}">
+									<layoutData>
+										<layout:ResponsiveFlowLayoutData
+											weight="2"
+											alignItems="End">
+										</layout:ResponsiveFlowLayoutData>
+									</layoutData>
+								</Text>
+							</form:fields>
+					</form:FormElement>
+					<form:FormElement
+						id="ItemDetailInfoMaterialGroup"
+						visible="{parts : [{path : 'HdItmProductDetails/ItemType'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.materialVisibilityTrigger'}">
+						<form:layoutData>
+							<layout:ResponsiveFlowLayoutData
+								linebreak="true" 
+								margin="false">
+							</layout:ResponsiveFlowLayoutData>
+						</form:layoutData>
+						<form:label>
+							<Label
+								text="{i18n>view.PurchaseRequisition.materialGroup}">
+							</Label>
+						</form:label>
+						<form:fields>
+							<Text text="{parts : [{path : 'HdItmProductDetails/MaterialGroup'}, {path : 'HdItmProductDetails/MaterialGroupDescription'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.materialGroupFormatter'}">
+								<layoutData>
+									<layout:ResponsiveFlowLayoutData
+										weight="2"
+										alignItems="End">
+									</layout:ResponsiveFlowLayoutData>
+								</layoutData>
+							</Text>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement
+						id="ItemDetailInfoServiceGroup"
+						visible="{parts : [{path : 'HdItmProductDetails/ItemType'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.serviceVisibilityTrigger'}">
+						<form:layoutData>
+							<layout:ResponsiveFlowLayoutData
+								linebreak="true" 
+								margin="false">
+							</layout:ResponsiveFlowLayoutData>
+						</form:layoutData>
+						<form:label>
+							<Label
+								text="{i18n>view.PurchaseRequisition.serviceGroup}">
+							</Label>
+						</form:label>
+						<form:fields>
+							<Text text="{parts : [{path : 'HdItmProductDetails/MaterialGroup'}, {path : 'HdItmProductDetails/MaterialGroupDescription'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.materialGroupFormatter'}">
+								<layoutData>
+									<layout:ResponsiveFlowLayoutData
+										weight="2"
+										alignItems="End">
+									</layout:ResponsiveFlowLayoutData>
+								</layoutData>
+							</Text>
+						</form:fields>
+					</form:FormElement>
+					<form:FormElement
+						id="ItemDetailInfoDesiredVendor"
+						visible="{=${DesiredVendor} !== ''}">
+						<form:layoutData>
+							<layout:ResponsiveFlowLayoutData
+								linebreak="true" 
+								margin="false">
+							</layout:ResponsiveFlowLayoutData>
+						</form:layoutData>
+						<form:label>
+							<Label
+								text="{i18n>view.PurchaseRequisition.desiredVendor}">
+							</Label>
+						</form:label>
+						<form:fields>
+							<Text text="{DesiredVendor}">
+								<layoutData>
+									<layout:ResponsiveFlowLayoutData
+										weight="2">
+									</layout:ResponsiveFlowLayoutData>
+								</layoutData>
+							</Text>
+						</form:fields>
+					</form:FormElement>	
+					
+				</form:formElements>
+			</form:FormContainer>
+		</form:Form>
+		
+		
+		<form:Form
+			id="ItemDetailInfoFormDelivery"
+			title="{parts : [{path : 'DeliveryDate'}, {path : 'DeliveryDateAlsoLater'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.deliveryHeaderFormatter'}">
+			<form:layout>
+				<form:ResponsiveLayout></form:ResponsiveLayout>
+			</form:layout>
+			<form:formContainers>
+				<form:FormContainer>
+						<form:layoutData>
+							<layout:ResponsiveFlowLayoutData
+								linebreak="true" 
+								margin="false">
+							</layout:ResponsiveFlowLayoutData>
+						</form:layoutData>
+						
+					<form:formElements>
+					<form:FormElement
+						id="ItemDetailInfoDeliveryPlant"
+						visible="{parts : [{path : 'HdItmDeliveryAddress/PlantName'}, {path : 'HdItmDeliveryAddress/CustomerName'}, {path : 'HdItmDeliveryAddress/CustomerId'}, {path : 'HdItmDeliveryAddress/ItemType'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.plantVisibilityTrigger'}">
+						<form:layoutData>
+							<layout:ResponsiveFlowLayoutData
+								linebreak="true" 
+								margin="false">
+							</layout:ResponsiveFlowLayoutData>
+						</form:layoutData>
+						<form:label>
+							<Label
+								text="{i18n>view.PurchaseRequisition.plant}">
+							</Label>
+						</form:label>
+						<form:fields>
+							<Text 
+								text="{parts : [{path : 'HdItmDeliveryAddress/PlantName'}, {path : 'HdItmDeliveryAddress/Plant'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.commonIDFormatter'}">
+								<layoutData>
+									<layout:ResponsiveFlowLayoutData
+										weight="2"
+										alignItems="End">
+									</layout:ResponsiveFlowLayoutData>
+								</layoutData>
+							</Text>
+						</form:fields>
+					</form:FormElement>
+					
+					<form:FormElement
+							id="ItemDetailInfoName"
+							visible="{parts:[{path : 'HdItmDeliveryAddress/CustomerName' }, {path : 'HdItmDeliveryAddress/CustomerId'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.freestyleNameVisibilityTrigger'}">
+							<form:layoutData>
+								<layout:ResponsiveFlowLayoutData
+									linebreak="true" 
+									margin="false">
+								</layout:ResponsiveFlowLayoutData>
+							</form:layoutData>
+							<form:label>
+								<Label
+									text="{i18n>view.PurchaseRequisition.freestyleAdressLabel}"></Label>
+							</form:label>
+							<form:fields>
+								<Text
+									text="{HdItmDeliveryAddress/CustomerName}">
+									<layoutData>
+										<layout:ResponsiveFlowLayoutData
+											weight="2"
+											alignItems="End">
+										</layout:ResponsiveFlowLayoutData>
+									</layoutData>
+								</Text>
+							</form:fields>
+						</form:FormElement>
+						
+						
+						
+						<form:FormElement
+							id="ItemDetailInfoCustomer"
+							visible="{parts:[{path : 'HdItmDeliveryAddress/CustomerName' }, {path : 'HdItmDeliveryAddress/CustomerId'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.customerNameVisibilityTrigger'}">
+							<form:layoutData>
+								<layout:ResponsiveFlowLayoutData
+									linebreak="true" 
+									margin="false">
+								</layout:ResponsiveFlowLayoutData>
+							</form:layoutData>
+							<form:label>
+								<Label
+									text="{i18n>view.PurchaseRequisition.customerLabel}"></Label>
+							</form:label>
+							<form:fields>
+								<Text
+									text="{parts:[{path : 'HdItmDeliveryAddress/CustomerName' }, {path : 'HdItmDeliveryAddress/CustomerId'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.customerNameFormatter'}">
+									<layoutData>
+										<layout:ResponsiveFlowLayoutData
+											weight="2"
+											alignItems="End">
+										</layout:ResponsiveFlowLayoutData>
+									</layoutData>
+								</Text>
+							</form:fields>
+						</form:FormElement>
+						
+					
+					<form:FormElement
+						id="ItemDetailInfoDeliveryAddress"
+						visible="{parts : [{path : 'HdItmDeliveryAddress/AddressString'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.commonFieldVisibilityTrigger'}">
+						<form:layoutData>
+							<layout:ResponsiveFlowLayoutData
+								linebreak="true" 
+								margin="false">
+							</layout:ResponsiveFlowLayoutData>
+						</form:layoutData>
+						<form:label>
+							<Label
+								text="{i18n>view.PurchaseRequisition.deliveryAddress}"></Label>
+						</form:label>
+						<form:fields>
+							<Text
+								text="{HdItmDeliveryAddress/AddressString}">
+								<layoutData>
+									<layout:ResponsiveFlowLayoutData
+										weight="2"
+										alignItems="End">
+									</layout:ResponsiveFlowLayoutData>
+								</layoutData>
+							</Text>
+						</form:fields>
+					</form:FormElement>
+					
+					
+					<form:FormElement
+						id="ItemDetailInfoSupplierName"
+						visible="{path : 'SupplierName', formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.commonFieldVisibilityTrigger'}">
+						<form:layoutData>
+							<layout:ResponsiveFlowLayoutData
+								linebreak="true" 
+								margin="false">
+							</layout:ResponsiveFlowLayoutData>
+						</form:layoutData>
+						<form:label>
+							<Label
+								text="{i18n>view.PurchaseRequisition.supplierName}">
+							</Label>
+						</form:label>
+						<form:fields>
+							<Link
+								press="onSupplierPress"
+								active="true"
+								text="{SupplierName}"
+								visible="{path:'SupplierName', formatter:'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.commonFieldVisibilityTrigger'}">
+								<layoutData>
+									<layout:ResponsiveFlowLayoutData
+										weight="2"
+										alignItems="End">
+									</layout:ResponsiveFlowLayoutData>
+								</layoutData>
+							</Link>
+						</form:fields>
+					</form:FormElement>
+
+					<!-- @ExtensionPoint extInformation: information area -->
+					<core:ExtensionPoint name="extInformation" />
+				</form:formElements>
+			</form:FormContainer>
+		  </form:formContainers>
+		</form:Form>
+		<!-- end of Information area -->
+
+		<!-- Tables area -->
+		<!-- Item Notes -->  
+		<List
+			id="ListItemNotes"
+			items="{Notes}"
+			showSeparators="None"
+			headerDesign="Plain"
+			headerText="{i18n>view.PurchaseRequisition.notes}"
+			visible="{parts : [{path : 'NumberOfNotes'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.ItemNoteVisibilityTrigger'}">
+			<FeedListItem
+				id="NoteTemplate"
+				text="{Text}"
+				senderPress="onSenderPress"
+				info="{TypeDescription}">
+			</FeedListItem>
+		</List>
+
+		<!--Item Attachments -->  
+<!--		<List
+			id="ListItemAttachments"
+			items="{Attachments}"
+			headerText="{i18n>view.PurchaseRequisition.attachments}" 
+			showSeparators="None"
+			headerDesign="Plain"
+			visible="{parts : [{path : 'NumberOfAttachments'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.ItemAttachmentVisibilityTrigger'}">
+			<StandardListItem
+				title="{parts : [{path : 'Description'}, {path : 'MimeType'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.formatAttachmentDesc'}"
+				icon="{parts : [{path : 'MimeType'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.formatAttachmentIcon'}"
+				description="{parts : [{path : 'FileSize'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.formatAttachmentSize'}"
+				iconInset="false"
+				press="onAttachment"
+				type="Active"
+				info="{parts : [{path : 'CreatedAt'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.attachmentDateFormatter'}">
+			</StandardListItem>
+	    </List>-->
+
+	    <!-- Limit -->
+	    <Table
+	    	id="LimitTable"
+	    	noDataText="{i18n>view.PurchaseRequisition.placeholder}" 
+			headerText="{i18n>view.PurchaseRequisition.limit}" 
+			items="{Limits}"
+			headerDesign="Plain"
+			visible="{parts : [{path : 'Limits'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.ItemLimitVisibilityTrigger'}">
+			 <columns>
+	 			<Column
+	 				id="LimitTableColumnDescription"
+	 				alignItems="Start"
+	 				demandPopin="true">
+	 				<header>
+	 					<Label
+	 						text="{i18n>view.DetailItemLimitView.desc}">
+	 					</Label>
+	 				</header>
+	 			</Column>
+	 			<Column
+	 				id="LimitTableColumnLimitValue"
+	 				alignItems="End"
+	 				hAlign="Right"
+	 				demandPopin="true"
+	 				minScreenWidth="Tablet">
+	 				<header>
+	 					<Label
+							text="{i18n>view.PurchaseRequisition.limitValue}">
+						</Label>
+	 				</header>
+	 			</Column>
+	 			<Column
+	 				id="LimitTableColumnExpectedValue"
+	 				alignItems="End"
+	 				hAlign="Right"
+	 				demandPopin="true"
+	 				minScreenWidth="Tablet">
+	 				<header>
+	 					<Label
+	 						text="{i18n>view.PurchaseRequisition.expValue}">
+	 					</Label>
+	 				</header>
+	 			</Column>
+	 		</columns>
+			<ColumnListItem
+	 			press="onServiceLimitPress">
+				<cells>
+					<ObjectIdentifier
+						title="{LimitDescription}">
+					</ObjectIdentifier>
+					<Text
+						text="{parts : [{path : 'ValueLimit'}, {path : 'IsValueUnLimited'}, {path : 'Currency'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.valueLimitWithoutLabelFormatter'}">
+					</Text>
+					<ObjectNumber
+						number="{parts : [{path : 'ExpectedValue'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.formatAmount'}"
+						numberUnit="{Currency}">
+					</ObjectNumber>
+				</cells>
+			</ColumnListItem>
+		</Table>
+
+		<!-- Service Lines NumberServiceLines -->
+		<Table
+			id="NumberServiceLinesTable"
+			headerText="{parts : [{path : 'NumberServiceLines'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.serviceLinesTableHeader'}"
+			visible="{parts : [{path : 'NumberServiceLines'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.ItemServiceLineVisibilityTrigger'}"
+			noDataText="{i18n>view.PurchaseRequisition.placeholder}" 
+			headerDesign="Plain"
+			items="{ServiceLines}">
+			<columns>
+	 			<Column
+	 				id="NumberServiceLinesTableColumnDescription"
+	 				alignItems="Start"
+	 				demandPopin="true">
+	 				<header>
+	 					<Label
+	 						text="{i18n>view.DetailItemServiceView.desc}">
+	 					</Label>
+	 				</header>
+	 			</Column>
+	 			<Column
+	 				id="NumberServiceLinesTableColumnQuantity"
+	 				alignItems="End"
+	 				hAlign="Right"
+	 				demandPopin="true"
+	 				minScreenWidth="Tablet">
+	 				<header>
+	 					<Label
+	 						text="{i18n>view.PurchaseRequisition.quantity}">
+	 					</Label>
+	 				</header>
+	 			</Column>
+	 			<Column
+	 				id="NumberServiceLinesTableColumnSubtotal"
+	 				alignItems="End"
+	 				hAlign="Right"
+	 				demandPopin="true"
+	 				minScreenWidth="Tablet">
+	 				<header>
+	 					<Label
+	 						text="{i18n>view.DetailItemServiceView.subTotal}">
+	 					</Label>
+	 				</header>
+	 			</Column>
+			</columns>
+			<ColumnListItem
+	 			press="onServiceItemPress"
+	 			>
+	 			<cells>
+	 				<ObjectIdentifier
+	 					title="{Description}">
+	 				</ObjectIdentifier>
+	 				<Text 
+	 					text="{parts : [{path : 'Quantity'}, {path : 'UnitDescription'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.quantityFormatter'}">
+	 				</Text>
+	 				<ObjectNumber 
+	 					number="{parts : [{path : 'Value'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.formatAmount'}"
+	 					numberUnit="{Currency}">
+	 				</ObjectNumber>
+	 			</cells>
+	 		</ColumnListItem>
+		</Table>
+
+		<!-- Account Assignment -->
+		<layout:VerticalLayout
+			visible="{parts : [{path : 'Accountings'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.ItemAccountAssignmentVisibilityTrigger'}"
+			width="100%">
+			<mvc:XMLView
+				id="AccountAssignmentCommonView"
+				viewName="cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.view.AccountAssignmentTable">
+			</mvc:XMLView>
+		</layout:VerticalLayout>
+		<!-- end of Account Assignment -->
+
+		<!-- Subcontracting -->
+		<Table
+			id="SubcontractingTable"
+			headerText="{i18n>view.PurchaseRequisition.components}"
+			noDataText="{i18n>view.PurchaseRequisition.placeholder}"
+			visible="{parts:[{path : 'ItemCategory'}], formatter : 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.Conversions.componentVisibilityTrigger'}"
+			headerDesign="Plain"
+			class="purchaseRequisitionTable">
+			<columns>
+				<Column
+					id="ComponentDescription"
+					alignItems="Start"
+					demandPopin="true"
+					minScreenWidth="Tablet">
+					<header>
+						<Label
+							text="{i18n>view.PurchaseRequisition.descriptionLabel}">
+						</Label>
+					</header>
+				</Column>
+				<Column
+					id="ComponentQuantity"
+					alignItems="End"
+					hAlign="Right"
+					demandPopin="true"
+					minScreenWidth="Tablet">
+					<header>
+						<Label
+							text="{i18n>view.PurchaseRequisition.quantity}">
+						</Label>
+					</header>
+				</Column>
+			</columns>
+		</Table>
+
+	</Page>
+</core:View>

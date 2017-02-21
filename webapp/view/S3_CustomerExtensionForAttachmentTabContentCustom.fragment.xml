@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
+	xmlns:sap.ca.ui="sap.ca.ui" xmlns:suite="sap.suite.ui.commons">
+	<!-- The following controls were copied from the parent view -->
+	<UploadCollection xmlns="sap.m" id="uploadCollection"
+		uploadEnabled="false"
+		items="{detail&gt;/Attachments/results}" uploadComplete="onAttachmentUploadComplete" fileDeleted="onAttachmentDeleted"
+		change="onAttachmentChange" sameFilenameAllowed="true">
+		<items>
+			<UploadCollectionItem contributor="{detail&gt;CreatedByName}" documentId="{detail&gt;ID}" fileName="{detail&gt;FileName}"
+				fileSize="{detail&gt;FileSize}" mimeType="{detail&gt;mime_type}"
+				uploadedDate="{path: 'detail&gt;CreatedAt', type: 'sap.ca.ui.model.type.DateTime', formatOptions: { style: 'medium'}}"
+				url="{ path: 'detail&gt;__metadata/media_src', formatter: 'cross.fnd.fiori.inbox.Conversions.getRelativeMediaSrc' }" enableEdit="false"
+				visibleEdit="false" visibleDelete="{detail&gt;AttachmentSupports/Delete}"/>
+		</items>
+		<parameters/>
+	</UploadCollection>
+</core:FragmentDefinition>

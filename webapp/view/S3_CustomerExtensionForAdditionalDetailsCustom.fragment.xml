@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
+	xmlns:sap.ca.ui="sap.ca.ui" xmlns:suite="sap.suite.ui.commons">
+	<Table items="{detail>/PRItems/results}">
+		<headerToolbar>
+			<Toolbar>
+				<Label text="Goods/Services"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<!--			<Column alignItems="Start" demandPopin="true">
+				<Label text="Item"/>
+			</Column>-->
+			<Column hAlign="Left" demandPopin="true" minScreenWidth="Tablet">
+				<Label text="Short Text"/>
+			</Column>
+			<Column hAlign="Right" demandPopin="true" minScreenWidth="Tablet">
+				<Label text="Quantity"/>
+			</Column>
+			<Column hAlign="Right" demandPopin="true" minScreenWidth="Tablet">
+				<Label text="Expected"/>
+			</Column>
+			<Column hAlign="Right" demandPopin="true" minScreenWidth="Tablet">
+				<Label text="Limit"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" press="onShowItemDetails">
+				<cells>
+					<!--<ObjectIdentifier title="{detail>ItemNumber}"/>-->
+					<ObjectIdentifier title="{detail>ShortText}"/>
+					<ObjectNumber
+						number="{path: 'detail>Quantity', formatter: 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.quantityUnit'}"
+						numberUnit="{detail>QuantityUnit}"/>						
+					<ObjectNumber
+						number="{path: 'detail>ExpectedValue', formatter: 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.amountWithoutCurrency'}"
+						numberUnit="{detail>Currency}"/>
+					<ObjectNumber
+						number="{parts: [{path: 'detail>OverallLimit'}, {path: 'detail>NoLimit'}], formatter: 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.limitAmount'}"
+						numberUnit="{parts: [{path: 'detail>Currency'}, {path: 'detail>NoLimit'}], formatter: 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.limitCurrency'}">
+						<customData>
+							<core:CustomData key="unlimited" value="{detail>NoLimit}" writeToDom="true"/>
+						</customData>
+					</ObjectNumber>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

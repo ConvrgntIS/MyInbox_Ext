@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
+	xmlns:sap.ca.ui="sap.ca.ui" xmlns:suite="sap.suite.ui.commons" resourceBundleName="sap.ca.ui.i18n.i18n" resourceBundleAlias="ca_i18n">
+	<!-- The following controls were copied from the parent view -->
+	<ObjectHeader xmlns="sap.m" title="{detail&gt;/TaskTitle}"
+		number="{parts: [{path: 'detail&gt;/Description/TotalExpected'}], formatter: 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.amountWithoutCurrency'}"
+		numberUnit="{detail&gt;/Description/Currency}">
+		<attributes>
+			<ObjectAttribute id="ARuserName" text="{detail>/Description/PRCreatedBy}" active="true" press="onEmployeeLaunchTask"/>
+			<ObjectAttribute text="{path: 'detail&gt;/CreatedOn', formatter:'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.formatterCreatedDate'}"/>
+			<ObjectAttribute text="{path: 'detail&gt;/CompletionDeadLine', formatter:'cross.fnd.fiori.inbox.Conversions.formatterDueDate'}"/>
+		</attributes>
+		<statuses>
+			<ObjectStatus
+				text="{parts: [{path: 'detail>/Description/TotalOverallLimit'}, {path: 'detail>/Description/Currency'}], formatter: 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.overallAmount'}"></ObjectStatus>
+				<ObjectStatus
+				state="Warning"
+				text="{path: 'detail>/Description/NoLimit', formatter: 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.noLimit'}"
+				icon="{path: 'detail>/Description/NoLimit', formatter: 'cross.fnd.fiori.inbox.ZCA_FIORI_INBOX.util.formatter.noLimitIcon'}"></ObjectStatus>
+		</statuses>
+	</ObjectHeader>
+</core:FragmentDefinition>

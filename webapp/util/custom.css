@@ -1,0 +1,6 @@
+.expectedAmount {
+    font-size: large;
+}
+div[data-unlimited="true"] {
+    color: red;
+}

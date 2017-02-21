@@ -1,0 +1,126 @@
+{
+  "projectType": [
+    "sap.watt.uitools.ide.fiori",
+    "sap.watt.uitools.ide.web",
+    "com.watt.common.builder.sapui5clientbuild"
+  ],
+  "build": {
+    "targetFolder": "dist",
+    "sourceFolder": "webapp",
+    "buildRequired": false,
+    "lastBuildDateTime": "Wed, 20 Jul 2016 06:52:14 GMT"
+  },
+  "generation": [
+    {
+      "templateId": "fioriexttemplate.extensionProject",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Wed, 01 Jun 2016 07:32:32 GMT"
+    },
+    {
+      "templateId": "fioriexttemplate.replaceservicecomponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Wed, 01 Jun 2016 07:34:34 GMT"
+    },
+    {
+      "templateId": "fioriexttemplate.i18ncomponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Wed, 01 Jun 2016 10:42:27 GMT"
+    },
+    {
+      "templateId": "fioriexttemplate.extendviewcomponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Thu, 30 Jun 2016 10:44:18 GMT"
+    },
+    {
+      "templateId": "fioriexttemplate.extendcontrollerhook",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Wed, 08 Jun 2016 06:20:50 GMT"
+    },
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationComponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Wed, 08 Jun 2016 17:46:19 GMT"
+    },
+    {
+      "templateId": "fioriexttemplate.replaceviewcomponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Thu, 02 Jun 2016 16:26:08 GMT"
+    }
+  ],
+  "mockpreview": {
+    "mockUri": "/sap/opu/odata/sap/ZPR_APPROVAL_SRV",
+    "metadataFilePath": "",
+    "loadJSONFiles": false,
+    "loadCustomRequests": false,
+    "mockRequestsFilePath": ""
+  },
+  "translation": {
+    "translationDomain": "",
+    "supportedLanguages": "en,fr,de",
+    "defaultLanguage": "en",
+    "defaultI18NPropertyFile": "i18n.properties",
+    "resourceModelName": "i18n"
+  },
+  "basevalidator": {
+    "services": {
+      "xml": "fioriXmlAnalysis",
+      "js": "fioriJsValidator"
+    }
+  },
+  "extensibility": {
+    "controllers": {
+      "Main": "CA_FIORI_INBOX%2fMain.controller.js",
+      "Forward": "CA_FIORI_INBOX%2fview%2fForward.controller.js",
+      "MultiSelectDetail": "CA_FIORI_INBOX%2fview%2fMultiSelectDetail.controller.js",
+      "MultiSelectFilter": "CA_FIORI_INBOX%2fview%2fMultiSelectFilter.controller.js",
+      "MultiSelectMessage": "CA_FIORI_INBOX%2fview%2fMultiSelectMessage.controller.js",
+      "MultiSelectSummary": "CA_FIORI_INBOX%2fview%2fMultiSelectSummary.controller.js",
+      "S2": "CA_FIORI_INBOX%2fview%2fS2.controller.js",
+      "S3": "CA_FIORI_INBOX%2fview%2fS3.controller.js",
+      "SupportInfo": "CA_FIORI_INBOX%2fview%2fSupportInfo.controller.js",
+      "ViewSubstitution": "CA_FIORI_INBOX%2fview%2fViewSubstitution.controller.js"
+    },
+    "views": {
+      "Main": "CA_FIORI_INBOX%2fMain.view.xml",
+      "Forward": "CA_FIORI_INBOX%2fview%2fForward.view.xml",
+      "MultiSelectDetail": "CA_FIORI_INBOX%2fview%2fMultiSelectDetail.view.xml",
+      "MultiSelectFilter": "CA_FIORI_INBOX%2fview%2fMultiSelectFilter.view.xml",
+      "MultiSelectMessage": "CA_FIORI_INBOX%2fview%2fMultiSelectMessage.view.xml",
+      "MultiSelectSummary": "CA_FIORI_INBOX%2fview%2fMultiSelectSummary.view.xml",
+      "S2": "CA_FIORI_INBOX%2fview%2fS2.view.xml",
+      "S3": "CA_FIORI_INBOX%2fview%2fS3.view.xml",
+      "SupportInfo": "CA_FIORI_INBOX%2fview%2fSupportInfo.view.xml",
+      "ViewSubstitution": "CA_FIORI_INBOX%2fview%2fViewSubstitution.view.xml"
+    },
+    "fragments": {
+      "AddSubstitute": "CA_FIORI_INBOX%2ffrag%2fAddSubstitute.fragment.xml",
+      "JamShareItemDisplay": "CA_FIORI_INBOX%2ffrag%2fJamShareItemDisplay.fragment.xml",
+      "SubstituteProfile": "CA_FIORI_INBOX%2ffrag%2fSubstituteProfile.fragment.xml",
+      "UserPicker": "CA_FIORI_INBOX%2ffrag%2fUserPicker.fragment.xml"
+    },
+    "type": "abaprep",
+    "shouldLinkComponentToManifest": false,
+    "component": "CA_FIORI_INBOX%2fComponent.js",
+    "configuration": "CA_FIORI_INBOX%2fConfiguration.js",
+    "versionJsonPath": "CA_FIORI_INBOX%2fversion.json",
+    "system": {
+      "name": "GW1",
+      "proxyUrlPrefix": "/destinations/GW1",
+      "sapClient": "001"
+    },
+    "BSPName": "CA_FIORI_INBOX",
+    "namespace": "cross.fnd.fiori.inbox",
+    "resourceBundle": "i18n/i18n.properties",
+    "parentResourceRootUrl": "/destinations/GW1/sap/bc/ui5_ui5/sap/CA_FIORI_INBOX"
+  },
+  "codeCheckingTriggers": {
+    "notifyBeforePush": true,
+    "notifyBeforePushLevel": "Error",
+    "blockPush": false,
+    "blockPushLevel": "Error"
+  },
+  "deploy": {
+    "destination": "GW1",
+    "name": "ZCA_FIORI_INBOX"
+  }
+}
